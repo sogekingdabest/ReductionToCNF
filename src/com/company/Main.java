@@ -1,6 +1,5 @@
 package com.company;
 
-
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
@@ -8,16 +7,124 @@ import java.util.ArrayList;
 
 public class Main {
 
-    private static void crearArbol(String[] lineasFichero, int pointer){
-        String r = lineasFichero[++pointer];
+    private static ArbolBin transformarNNF(ArbolBin arbolEntrada){
+        String r = arbolEntrada.getRaiz();
+        ArbolBin izq = arbolEntrada.getIzq();
+        ArbolBin der = arbolEntrada.getDer();
+        if (r.equals("-")){
+            if (izq.getRaiz().equals("-")){
+                arbolEntrada.setRaiz(izq.getIzq().getRaiz());
+                arbolEntrada.setIzq(izq.getIzq().getIzq());
+                arbolEntrada.setDer(izq.getIzq().getDer());
+                if (izq != null){
+                    transformarNNF(izq);
+                }
+                if (der != null){
+                    transformarNNF(der);
+                }
+                return arbolEntrada;
+            }
+
+            if (izq.getRaiz().equals("&")){
+                arbolEntrada.setRaiz("|");
+                if (izq != null){
+                    arbolEntrada.setIzq(new ArbolBin("-", izq, null));
+                    transformarNNF(izq);
+                }
+                if (der != null){
+                    arbolEntrada.setDer(new ArbolBin("-", der, null));
+                    transformarNNF(der);
+                }
+                return arbolEntrada;
+            }
+
+            if (izq.getRaiz().equals("|")){
+                arbolEntrada.setRaiz("&");
+                if (izq != null){
+                    arbolEntrada.setIzq(new ArbolBin("-", izq, null));
+                    transformarNNF(izq);
+                }
+                if (der != null){
+                    arbolEntrada.setDer(new ArbolBin("-", der, null));
+                    transformarNNF(der);
+                }
+                return arbolEntrada;
+            }
+
+        } else {
+            if (izq != null){
+                transformarNNF(izq);
+            }
+            if (der != null){
+                transformarNNF(der);
+            }
+        }
+        return arbolEntrada;
+    }
+
+    private static ArbolBin transformarFNC(ArbolBin arbolEntrada) {
+        return null;
+    }
+
+    private static ArbolBin crearArbol(String[] lineasFichero, Pointer pointer){
+        String r = lineasFichero[pointer.next()];
+        ArbolBin izq = null;
+        ArbolBin der = null;
+        ArbolBin arbolSalida;
 
         if (r.equals("&") || r.equals("|") || r.equals(">") || r.equals("=") || r.equals("%") ){
-            System.out.println(r + " MACAQUINHO " + pointer);
-            crearArbol(lineasFichero, pointer);
-        } else if(r.equals("-") || r.equals("0") || r.equals("1")){
-            return;
+            izq = crearArbol(lineasFichero, pointer);
+            der = crearArbol(lineasFichero, pointer);
+            if (r.equals(">")) {
+                r= "|";
+                System.out.println(r + " MACAQUINHO " + pointer.getValor());
+                return arbolSalida = new ArbolBin(
+                        r,
+                        new ArbolBin("-", izq, null),
+                        der
+                );
+            } else if (r.equals("=")) {
+                r = "&";
+                System.out.println(r + " MACAQUINHO " + pointer.getValor());
+                return arbolSalida = new ArbolBin(
+                            r,
+                            new ArbolBin(
+                                    "|",
+                                    new ArbolBin("-", izq, null),
+                                    der
+                            ),
+                            new ArbolBin(
+                                    "|",
+                                    new ArbolBin("-", der, null),
+                                    izq
+                            )
+                        );
+            } else if (r.equals("%")){
+                r = "|";
+                System.out.println(r + " MACAQUINHO " + pointer.getValor());
+                return arbolSalida = new ArbolBin(
+                        r,
+                        new ArbolBin(
+                                "&",
+                                izq,
+                                new ArbolBin("-", der, null)
+                        ),
+                        new ArbolBin(
+                                "&",
+                                new ArbolBin("-", izq, null),
+                                der
+                        )
+                );
+            }
+            System.out.println(r + " MACAQUINHO " + pointer.getValor());
+            return arbolSalida = new ArbolBin(r,izq,der);
+        } else if(r.equals("-")){
+            System.out.println(r + " MACACO " + pointer.getValor());
+            izq = crearArbol(lineasFichero, pointer);
+            return arbolSalida = new ArbolBin(r,izq,null);
         } else {
-            return;
+            System.out.println(r + " OTROS " + pointer.getValor());
+            return arbolSalida = new ArbolBin(r,null, null);
         }
     }
 
@@ -61,14 +168,22 @@ public class Main {
                 }
             }
         }
-        System.out.println(lineasArchivo);
         return lineasArchivo;
     }
 
     public static void main(String[] args) {
         ArrayList<String> lineasFichero = lecturaLineasArchivo(args);
-        int pointer = -1;
+        Pointer pointer = new Pointer(-1);
         System.out.println(lecturaLineasArchivo(args));
-        //crearArbol(lineasFichero[0].split(" "), pointer);
+        ArbolBin arbol = crearArbol(lineasFichero.get(1).split(" "), pointer);
+        System.out.println(arbol.getRaiz());
+        ArbolBin macaco = new ArbolBin("-",
+                new ArbolBin("-",
+                        new ArbolBin("p",null,null),
+                        null),
+                null
+        );
+        transformarNNF(macaco);
+        System.out.println(macaco.getRaiz());
     }
 }
