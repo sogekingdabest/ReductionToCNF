@@ -1,10 +1,14 @@
 package com.company;
 
 
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileReader;
+
 public class Main {
 
     private static void crearArbol(String[] lineasFichero, int pointer){
-        String r = lineasFichero[pointer++];
+        String r = lineasFichero[++pointer];
 
         if (r.equals("&") || r.equals("|") || r.equals(">") || r.equals("=") || r.equals("%") ){
             System.out.println(r + " MACAQUINHO " + pointer);
@@ -16,9 +20,56 @@ public class Main {
         }
     }
 
+    private static String [] lecturaLineasArchivo(String [] args) {
+        File archivo = null;
+        FileReader fr = null;
+        BufferedReader br = null;
+        String rutaArchivo = "";
+        String [] lineasArchivo = null;
+        int i = 0;
+        System.out.println(args[0]);
+        if (args.length == 0)
+            System.exit(0);
+        if (args.length == 1) {
+            rutaArchivo = args[0];
+            try {
+                // Apertura del fichero y creacion de BufferedReader para poder
+                // hacer una lectura comoda (disponer del metodo readLine()).
+                archivo = new File(rutaArchivo);
+                fr = new FileReader(archivo);
+                br = new BufferedReader(fr);
+
+                // Lectura del fichero
+                String linea;
+                while ((linea = br.readLine()) != null){
+                    System.out.println("Linea: " + linea);
+                    lineasArchivo[i] = linea;
+                    i = i++;
+                }
+
+            } catch (Exception e) {
+                e.printStackTrace();
+            } finally {
+                // En el finally cerramos el fichero, para asegurarnos
+                // que se cierra tanto si todo va bien como si salta
+                // una excepcion.
+                try {
+                    if (null != fr) {
+                        fr.close();
+                    }
+                } catch (Exception e2) {
+                    e2.printStackTrace();
+                }
+            }
+        }
+        System.out.println(lineasArchivo);
+        return lineasArchivo;
+    }
+
     public static void main(String[] args) {
-        String[] lineasFichero = LeerFichero.lecturaLineasArchivo(args);
+        String[] lineasFichero = lecturaLineasArchivo(args);
         int pointer = -1;
-        crearArbol(lineasFichero[0].split(" "), pointer);
+        System.out.println(lecturaLineasArchivo(args));
+        //crearArbol(lineasFichero[0].split(" "), pointer);
     }
 }
