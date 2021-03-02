@@ -20,7 +20,6 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="ae9b7cd2-5f6c-47d2-b04a-770690cf9cad" name="Default Changelist" comment="Olaneta">
-      <change afterPath="$PROJECT_DIR$/src/com/company/LeerFichero.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/com/company/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/company/Main.java" afterDir="false" />
     </list>
@@ -52,16 +51,6 @@
     <property name="nodejs_package_manager_path" value="npm" />
   </component>
   <component name="RunManager">
-    <configuration name="Main" type="Application" factoryName="Application" temporary="true">
-      <option name="MAIN_CLASS_NAME" value="com.company.Main" />
-      <module name="ReductionToCNF" />
-      <option name="WORKING_DIRECTORY" value="file://$PROJECT_DIR$" />
-      <RunnerSettings RunnerId="Run" />
-      <ConfigurationWrapper RunnerId="Run" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
     <configuration default="true" type="ArquillianJUnit" factoryName="" nameIsGenerated="true">
       <option name="arquillianRunConfiguration">
         <value>
@@ -69,6 +58,16 @@
         </value>
       </option>
       <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="Main" type="Application" factoryName="Application" temporary="true">
+      <option name="MAIN_CLASS_NAME" value="com.company.Main" />
+      <module name="ReductionToCNF" />
+      <option name="PROGRAM_PARAMETERS" value="~/Descargas/Q2/RCRA/examples/lady3doors.txt" />
+      <RunnerSettings RunnerId="Run" />
+      <ConfigurationWrapper RunnerId="Run" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -116,33 +115,46 @@
     <option name="LAST_COMMIT_MESSAGE" value="Olaneta" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="223" y="67" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1614426772705">
-      <screen x="0" y="0" width="1536" height="824" />
+    <state x="2292" y="117" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1614687177431">
+      <screen x="1920" y="0" width="2560" height="1440" />
     </state>
     <state x="223" y="67" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1536.824@0.0.1536.824" timestamp="1614426772705" />
+    <state x="2292" y="117" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.181.1920.1053/1920.0.2560.1440@1920.0.2560.1440" timestamp="1614687177431" />
+    <state x="2617" y="167" width="424" height="591" key="#com.intellij.ide.macro.MacrosDialog" timestamp="1614686927799">
+      <screen x="1920" y="0" width="2560" height="1440" />
+    </state>
+    <state x="2617" y="167" width="424" height="591" key="#com.intellij.ide.macro.MacrosDialog/0.181.1920.1053/1920.0.2560.1440@1920.0.2560.1440" timestamp="1614686927799" />
     <state x="93" y="93" width="1350" height="638" key="DiffContextDialog" timestamp="1614426143318">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="93" y="93" width="1350" height="638" key="DiffContextDialog/0.0.1536.824@0.0.1536.824" timestamp="1614426143318" />
-    <state width="1493" height="210" key="GridCell.Tab.0.bottom" timestamp="1614426614732">
-      <screen x="0" y="0" width="1536" height="824" />
+    <state width="2514" height="402" key="GridCell.Tab.0.bottom" timestamp="1614687129284">
+      <screen x="1920" y="0" width="2560" height="1440" />
     </state>
     <state width="1493" height="210" key="GridCell.Tab.0.bottom/0.0.1536.824@0.0.1536.824" timestamp="1614426614732" />
-    <state width="1493" height="210" key="GridCell.Tab.0.center" timestamp="1614426614732">
-      <screen x="0" y="0" width="1536" height="824" />
+    <state width="2514" height="402" key="GridCell.Tab.0.bottom/0.181.1920.1053/1920.0.2560.1440@1920.0.2560.1440" timestamp="1614687129284" />
+    <state width="2514" height="402" key="GridCell.Tab.0.center" timestamp="1614687129283">
+      <screen x="1920" y="0" width="2560" height="1440" />
     </state>
     <state width="1493" height="210" key="GridCell.Tab.0.center/0.0.1536.824@0.0.1536.824" timestamp="1614426614732" />
-    <state width="1493" height="210" key="GridCell.Tab.0.left" timestamp="1614426614732">
-      <screen x="0" y="0" width="1536" height="824" />
+    <state width="2514" height="402" key="GridCell.Tab.0.center/0.181.1920.1053/1920.0.2560.1440@1920.0.2560.1440" timestamp="1614687129283" />
+    <state width="2514" height="402" key="GridCell.Tab.0.left" timestamp="1614687129283">
+      <screen x="1920" y="0" width="2560" height="1440" />
     </state>
     <state width="1493" height="210" key="GridCell.Tab.0.left/0.0.1536.824@0.0.1536.824" timestamp="1614426614732" />
-    <state width="1493" height="210" key="GridCell.Tab.0.right" timestamp="1614426614732">
-      <screen x="0" y="0" width="1536" height="824" />
+    <state width="2514" height="402" key="GridCell.Tab.0.left/0.181.1920.1053/1920.0.2560.1440@1920.0.2560.1440" timestamp="1614687129283" />
+    <state width="2514" height="402" key="GridCell.Tab.0.right" timestamp="1614687129283">
+      <screen x="1920" y="0" width="2560" height="1440" />
     </state>
     <state width="1493" height="210" key="GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824" timestamp="1614426614732" />
+    <state width="2514" height="402" key="GridCell.Tab.0.right/0.181.1920.1053/1920.0.2560.1440@1920.0.2560.1440" timestamp="1614687129283" />
     <state x="2795" y="456" width="800" height="535" key="Vcs.Push.Dialog.v2" timestamp="1614425242008">
       <screen x="1920" y="0" width="2560" height="1440" />
     </state>
     <state x="2795" y="456" width="800" height="535" key="Vcs.Push.Dialog.v2/0.181.1920.1053/1920.0.2560.1440@1920.0.2560.1440" timestamp="1614425242008" />
+    <state x="2981" y="635" width="428" height="177" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1614684637272">
+      <screen x="1920" y="0" width="2560" height="1440" />
+    </state>
+    <state x="2981" y="635" width="428" height="177" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.181.1920.1053/1920.0.2560.1440@1920.0.2560.1440" timestamp="1614684637272" />
   </component>
 </project>
