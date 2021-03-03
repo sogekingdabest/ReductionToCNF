@@ -1,5 +1,7 @@
 package com.company;
 
+import java.util.ArrayList;
+
 public class ArbolBin {
     private String raiz;
     private ArbolBin izq;
@@ -33,5 +35,9 @@ public class ArbolBin {
         this.raiz = raiz;
         this.izq = izq;
         this.der = der;
+    }
+
+    public boolean esHoja(){
+        return (this.getDer() == null);
     }
 }
