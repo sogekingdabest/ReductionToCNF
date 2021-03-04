@@ -4,6 +4,7 @@ import java.io.*;
 import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashSet;
 import java.util.List;
 
 public class Main {
@@ -308,13 +309,24 @@ public class Main {
 
     public static void main(String[] args) {
         ArrayList<String> lineasFichero = lecturaLineasArchivo(args);
+        HashSet<String> proposiciones=new HashSet<String>();
+        String [] partesLineasFichero;
         Pointer pointer = new Pointer(-1);
         ArrayList<ArrayList<String>> listaDeProposiciones = new ArrayList<>();
         ArbolBin arbol;
         try {
             PrintWriter writer = new PrintWriter(args[0].split("\\.")[0]+"2.lp", "UTF-8");
             for (int i = 0; i<lineasFichero.size(); i++) {
-                arbol = crearArbol(lineasFichero.get(i).split(" "), pointer);
+                writer.println("% "+ lineasFichero.get(i));
+                partesLineasFichero = lineasFichero.get(i).split(" ");
+                for (int j = 0; j<partesLineasFichero.size(); j++) {
+                    if (partesLineasFichero[j] != ">" || partesLineasFichero[j] != "&" || partesLineasFichero[j] != "-"
+                    || partesLineasFichero[j] != "=" || partesLineasFichero[j] != "%" || partesLineasFichero[j] != "|")
+                    {
+                        proposiciones.add(partesLineasFichero[j]);
+                    }
+                }
+                arbol = crearArbol(partesLineasFichero, pointer);
                 transformarNNF(arbol);
                 listaDeProposiciones = transformarFNC(arbol);
                 //System.out.println(arbol.getRaiz());
@@ -323,7 +335,10 @@ public class Main {
                 crearArchivoClingo(listaDeProposiciones, writer);
                 pointer.setValor(-1);
             }
-
+            writer.print("{");
+            while(proposiciones.iterator().hasNext())
+                writer.print(proposiciones.iterator().next() + ",");
+            writer.println("}");
             writer.close();
         } catch (Exception e) {
             e.printStackTrace();
