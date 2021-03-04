@@ -2,10 +2,7 @@ package com.company;
 
 import java.io.*;
 import java.lang.reflect.Array;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.HashSet;
-import java.util.List;
+import java.util.*;
 
 public class Main {
 
@@ -268,7 +265,7 @@ public class Main {
                 String linea;
                 while ((linea = br.readLine()) != null){
                     //System.out.println("Linea: " + linea);
-                    lineasArchivo.add("- "+ linea);
+                    lineasArchivo.add(linea);
                 }
 
             } catch (Exception e) {
@@ -309,7 +306,7 @@ public class Main {
 
     public static void main(String[] args) {
         ArrayList<String> lineasFichero = lecturaLineasArchivo(args);
-        HashSet<String> proposiciones=new HashSet<String>();
+        HashSet<String> proposiciones = new HashSet<String>();
         String [] partesLineasFichero;
         Pointer pointer = new Pointer(-1);
         ArrayList<ArrayList<String>> listaDeProposiciones = new ArrayList<>();
@@ -318,10 +315,12 @@ public class Main {
             PrintWriter writer = new PrintWriter(args[0].split("\\.")[0]+"2.lp", "UTF-8");
             for (int i = 0; i<lineasFichero.size(); i++) {
                 writer.println("% "+ lineasFichero.get(i));
-                partesLineasFichero = lineasFichero.get(i).split(" ");
-                for (int j = 0; j<partesLineasFichero.size(); j++) {
-                    if (partesLineasFichero[j] != ">" || partesLineasFichero[j] != "&" || partesLineasFichero[j] != "-"
-                    || partesLineasFichero[j] != "=" || partesLineasFichero[j] != "%" || partesLineasFichero[j] != "|")
+                partesLineasFichero = ("- " + lineasFichero.get(i)).split(" ");
+                for (int j = 0; j<partesLineasFichero.length; j++) {
+                    System.out.println(partesLineasFichero[j].equals(">") + " es " + partesLineasFichero[j]);
+                    if (!partesLineasFichero[j].equals(">") && !partesLineasFichero[j].equals("&") && !partesLineasFichero[j].equals("-")
+                    && !partesLineasFichero[j].equals("=") && !partesLineasFichero[j].equals("%") && !partesLineasFichero[j].equals("|")
+                    && !partesLineasFichero[j].equals("."))
                     {
                         proposiciones.add(partesLineasFichero[j]);
                     }
@@ -336,8 +335,13 @@ public class Main {
                 pointer.setValor(-1);
             }
             writer.print("{");
-            while(proposiciones.iterator().hasNext())
-                writer.print(proposiciones.iterator().next() + ",");
+            String [] itr = proposiciones.toArray(String[]::new);
+            for(int x = 0; x<itr.length;x++) {
+                if (x+1 != itr.length)
+                    writer.print(itr[x] + ",");
+                else
+                    writer.print(itr[x]);
+            }
             writer.println("}");
             writer.close();
         } catch (Exception e) {
