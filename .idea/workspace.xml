@@ -19,9 +19,8 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ae9b7cd2-5f6c-47d2-b04a-770690cf9cad" name="Default Changelist" comment="Todo ful chilindrinas hasta transformarFNC (sin incluir esta última)">
+    <list default="true" id="ae9b7cd2-5f6c-47d2-b04a-770690cf9cad" name="Default Changelist" comment="Teño ganas de su1c1d4rm3 moito.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/company/ArbolBin.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/company/ArbolBin.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/com/company/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/company/Main.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -111,7 +110,14 @@
       <option name="project" value="LOCAL" />
       <updated>1614722055167</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="Teño ganas de su1c1d4rm3 moito.">
+      <created>1614813815166</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1614813815166</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -130,7 +136,8 @@
     <MESSAGE value="Olaneta" />
     <MESSAGE value="No encuentra el archivo de ejemplo (lady3doors.txt)" />
     <MESSAGE value="Todo ful chilindrinas hasta transformarFNC (sin incluir esta última)" />
-    <option name="LAST_COMMIT_MESSAGE" value="Todo ful chilindrinas hasta transformarFNC (sin incluir esta última)" />
+    <MESSAGE value="Teño ganas de su1c1d4rm3 moito." />
+    <option name="LAST_COMMIT_MESSAGE" value="Teño ganas de su1c1d4rm3 moito." />
   </component>
   <component name="WindowStateProjectService">
     <state x="2409" y="157" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1614805433879">
@@ -154,30 +161,30 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="93" y="93" width="1350" height="638" key="DiffContextDialog/0.0.1536.824@0.0.1536.824" timestamp="1614426143318" />
-    <state width="2514" height="313" key="GridCell.Tab.0.bottom" timestamp="1614811679555">
+    <state width="2514" height="349" key="GridCell.Tab.0.bottom" timestamp="1614820354372">
       <screen x="1920" y="0" width="2560" height="1440" />
     </state>
     <state width="1493" height="210" key="GridCell.Tab.0.bottom/0.0.1536.824@0.0.1536.824" timestamp="1614426614732" />
-    <state width="2514" height="313" key="GridCell.Tab.0.bottom/0.181.1920.1053/1920.0.2560.1440@1920.0.2560.1440" timestamp="1614811679555" />
-    <state width="2514" height="313" key="GridCell.Tab.0.center" timestamp="1614811679555">
+    <state width="2514" height="349" key="GridCell.Tab.0.bottom/0.181.1920.1053/1920.0.2560.1440@1920.0.2560.1440" timestamp="1614820354372" />
+    <state width="2514" height="349" key="GridCell.Tab.0.center" timestamp="1614820354372">
       <screen x="1920" y="0" width="2560" height="1440" />
     </state>
     <state width="1493" height="210" key="GridCell.Tab.0.center/0.0.1536.824@0.0.1536.824" timestamp="1614426614732" />
-    <state width="2514" height="313" key="GridCell.Tab.0.center/0.181.1920.1053/1920.0.2560.1440@1920.0.2560.1440" timestamp="1614811679555" />
-    <state width="2514" height="313" key="GridCell.Tab.0.left" timestamp="1614811679555">
+    <state width="2514" height="349" key="GridCell.Tab.0.center/0.181.1920.1053/1920.0.2560.1440@1920.0.2560.1440" timestamp="1614820354372" />
+    <state width="2514" height="349" key="GridCell.Tab.0.left" timestamp="1614820354371">
       <screen x="1920" y="0" width="2560" height="1440" />
     </state>
     <state width="1493" height="210" key="GridCell.Tab.0.left/0.0.1536.824@0.0.1536.824" timestamp="1614426614732" />
-    <state width="2514" height="313" key="GridCell.Tab.0.left/0.181.1920.1053/1920.0.2560.1440@1920.0.2560.1440" timestamp="1614811679555" />
-    <state width="2514" height="313" key="GridCell.Tab.0.right" timestamp="1614811679555">
+    <state width="2514" height="349" key="GridCell.Tab.0.left/0.181.1920.1053/1920.0.2560.1440@1920.0.2560.1440" timestamp="1614820354371" />
+    <state width="2514" height="349" key="GridCell.Tab.0.right" timestamp="1614820354372">
       <screen x="1920" y="0" width="2560" height="1440" />
     </state>
     <state width="1493" height="210" key="GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824" timestamp="1614426614732" />
-    <state width="2514" height="313" key="GridCell.Tab.0.right/0.181.1920.1053/1920.0.2560.1440@1920.0.2560.1440" timestamp="1614811679555" />
-    <state x="2795" y="456" width="800" height="535" key="Vcs.Push.Dialog.v2" timestamp="1614722067517">
+    <state width="2514" height="349" key="GridCell.Tab.0.right/0.181.1920.1053/1920.0.2560.1440@1920.0.2560.1440" timestamp="1614820354372" />
+    <state x="2795" y="456" width="800" height="535" key="Vcs.Push.Dialog.v2" timestamp="1614813826423">
       <screen x="1920" y="0" width="2560" height="1440" />
     </state>
-    <state x="2795" y="456" width="800" height="535" key="Vcs.Push.Dialog.v2/0.181.1920.1053/1920.0.2560.1440@1920.0.2560.1440" timestamp="1614722067517" />
+    <state x="2795" y="456" width="800" height="535" key="Vcs.Push.Dialog.v2/0.181.1920.1053/1920.0.2560.1440@1920.0.2560.1440" timestamp="1614813826423" />
     <state x="2981" y="635" width="438" height="177" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1614774149622">
       <screen x="1920" y="0" width="2560" height="1440" />
     </state>

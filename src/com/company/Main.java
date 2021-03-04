@@ -142,6 +142,13 @@ public class Main {
                     derList = transformarFNC(der);
                 }
             }
+            //System.out.println(izqList);
+
+            for(int i= 0; i < derList.get(0).size(); i++){
+                izqList.get(0).add(derList.get(0).get(i));
+            }
+            listaSalida = izqList;
+            /*
             for (int i = 0; i < izqList.size(); i++){
                 for (int j = 0; j < derList.size(); j++){
                     for (int x = 0; x < izqList.get(i).size(); x++){
@@ -163,7 +170,7 @@ public class Main {
                         }
                     }
                 }
-            }
+            }*/
             return listaSalida;
 
         } else {
@@ -243,6 +250,7 @@ public class Main {
         BufferedReader br = null;
         String rutaArchivo = "";
         ArrayList<String> lineasArchivo = new ArrayList<String>();
+
         System.out.println(args[0]);
         if (args.length == 0)
             System.exit(0);
@@ -259,7 +267,7 @@ public class Main {
                 String linea;
                 while ((linea = br.readLine()) != null){
                     //System.out.println("Linea: " + linea);
-                    lineasArchivo.add(linea);
+                    lineasArchivo.add("- "+ linea);
                 }
 
             } catch (Exception e) {
@@ -280,51 +288,46 @@ public class Main {
         return lineasArchivo;
     }
 
-    public static void crearArchivoClingo(ArrayList<ArrayList<String>> listaDeProposiciones, String[] ruta) {
-        try {
-            PrintWriter writer = new PrintWriter(ruta[0]+"1.lp", "UTF-8");
+    public static void crearArchivoClingo(ArrayList<ArrayList<String>> listaDeProposiciones, PrintWriter writer) {
+            writer.print(":- ");
             for (int i = 0; i < listaDeProposiciones.size(); i++) {
-                writer.print(":- ");
                 for (int j = 0; j < listaDeProposiciones.get(i).size(); j++) {
-                    if (j+1 == listaDeProposiciones.get(i).size())
-                        writer.print(listaDeProposiciones.get(i).get(j));
-                    else
-                        writer.print(listaDeProposiciones.get(i).get(j) + ", ");
+                    writer.print(listaDeProposiciones.get(i).get(j));
+                    if (listaDeProposiciones.get(i).size()>1) {
+                        if (j+1 < listaDeProposiciones.get(i).size()) {
+                            writer.println(".");
+                            writer.print(":- ");
+                        }
+                    }
                 }
-                writer.println(".");
+                if (i+1 != listaDeProposiciones.size())
+                    writer.print(", ");
             }
-            writer.close();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+            writer.println(".");
     }
 
     public static void main(String[] args) {
         ArrayList<String> lineasFichero = lecturaLineasArchivo(args);
         Pointer pointer = new Pointer(-1);
         ArrayList<ArrayList<String>> listaDeProposiciones = new ArrayList<>();
-        //System.out.println(lecturaLineasArchivo(args));
-        ArbolBin arbol = crearArbol(lineasFichero.get(1).split(" "), pointer);
-        //System.out.println(arbol.getRaiz());
-        ArbolBin macaco = new ArbolBin("-",
-                new ArbolBin("-",
-                        new ArbolBin("p",null,null),
-                        null),
-                null
-        );
+        ArbolBin arbol;
+        try {
+            PrintWriter writer = new PrintWriter(args[0].split("\\.")[0]+"2.lp", "UTF-8");
+            for (int i = 0; i<lineasFichero.size(); i++) {
+                arbol = crearArbol(lineasFichero.get(i).split(" "), pointer);
+                transformarNNF(arbol);
+                listaDeProposiciones = transformarFNC(arbol);
+                //System.out.println(arbol.getRaiz());
+                System.out.println(listaDeProposiciones);
+                System.out.println(listaDeProposiciones.get(0));
+                crearArchivoClingo(listaDeProposiciones, writer);
+                pointer.setValor(-1);
+            }
 
-        transformarNNF(arbol);
-        ArbolBin aux = arbol;
-       /* while (aux != null) {
-            System.out.println("Izq " + aux.getRaiz());
-            if (aux.getDer() != null)
-                System.out.println("Der " + aux.getDer().getRaiz());
-            aux = aux.getIzq();
-        }*/
-        listaDeProposiciones = transformarFNC(arbol);
-        // System.out.println(arbol.getRaiz());
-        System.out.println(listaDeProposiciones);
-        System.out.println(args[0].split("\\.").length);
-        crearArchivoClingo(listaDeProposiciones, args[0].split("\\."));
+            writer.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
     }
 }
