@@ -83,9 +83,9 @@ public class Main {
 
             if(izq.esHoja() ){
                 if (izq.getRaiz().equals("-")) {
-                    izqList.get(0).add("not " + izq.getIzq().getRaiz());
+                    izqList.get(0).add(izq.getIzq().getRaiz());
                 } else {
-                    izqList.get(0).add(izq.getRaiz());
+                    izqList.get(0).add("not " + izq.getRaiz());
                 }
                 listaSalida.add(izqList.get(0));
 
@@ -99,9 +99,9 @@ public class Main {
             }
             if (der.esHoja()) {
                 if (der.getRaiz().equals("-")) {
-                    derList.get(0).add("not " + der.getIzq().getRaiz());
+                    derList.get(0).add(der.getIzq().getRaiz());
                 } else {
-                    derList.get(0).add(der.getRaiz());
+                    derList.get(0).add("not " + der.getRaiz());
                 }
                 listaSalida.add(derList.get(0));
             } else {
@@ -112,14 +112,15 @@ public class Main {
                     listaSalida.add(derList.get(i));
                 }
             }
+            System.out.println("Aqui & " + listaSalida);
             return listaSalida;
 
         } else if (r.equals("|")){
             if(izq.esHoja()){
                 if (izq.getRaiz().equals("-")) {
-                    izqList.get(0).add("not " + izq.getIzq().getRaiz());
+                    izqList.get(0).add(izq.getIzq().getRaiz());
                 } else {
-                    izqList.get(0).add(izq.getRaiz());
+                    izqList.get(0).add("not " + izq.getRaiz());
                 }
 
             } else {
@@ -130,9 +131,9 @@ public class Main {
             }
             if (der.esHoja()) {
                 if (der.getRaiz().equals("-")) {
-                    derList.get(0).add("not " + der.getIzq().getRaiz());
+                    derList.get(0).add(der.getIzq().getRaiz());
                 } else {
-                    derList.get(0).add(der.getRaiz());
+                    derList.get(0).add("not " + der.getRaiz());
                 }
 
             } else {
@@ -140,35 +141,15 @@ public class Main {
                     derList = transformarFNC(der);
                 }
             }
-            //System.out.println(izqList);
-
-            for(int i= 0; i < derList.get(0).size(); i++){
-                izqList.get(0).add(derList.get(0).get(i));
-            }
-            listaSalida = izqList;
-            /*
-            for (int i = 0; i < izqList.size(); i++){
-                for (int j = 0; j < derList.size(); j++){
-                    for (int x = 0; x < izqList.get(i).size(); x++){
-                        for (int y = 0; y < derList.get(j).size(); y++){
-
-                            aux = new ArrayList<>();
-                            if (izqList.get(i).get(x).equals(derList.get(j).get(y))){
-                                aux.add(izqList.get(i).get(x));
-                                listaSalida.add(aux);
-                            } else if(izqList.get(i).get(x).equals("-" + derList.get(j).get(y)) ||
-                                        derList.get(j).get(y).equals("-" + izqList.get(i).get(x))) {
-                                //No se hace nada porque se anulan
-                            } else {
-                                aux.add(izqList.get(i).get(x));
-                                aux.add(derList.get(j).get(y));
-                                listaSalida.add(aux);
-                            }
-
-                        }
-                    }
+            int posListaSalida = 0;
+            for(int j = 0; j <izqList.size(); j++) {
+                for(int i= 0; i < derList.size(); i++){
+                    listaSalida.add(new ArrayList<>());
+                    listaSalida.get(posListaSalida).addAll(derList.get(i));
+                    listaSalida.get(posListaSalida).addAll(izqList.get(j));
+                    posListaSalida = posListaSalida+1;
                 }
-            }*/
+            }
             return listaSalida;
 
         } else {
@@ -290,20 +271,34 @@ public class Main {
             writer.print(":- ");
             for (int i = 0; i < listaDeProposiciones.size(); i++) {
                 for (int j = 0; j < listaDeProposiciones.get(i).size(); j++) {
-                    writer.print(listaDeProposiciones.get(i).get(j));
-                    if (listaDeProposiciones.get(i).size()>1) {
-                        if (j+1 < listaDeProposiciones.get(i).size()) {
-                            writer.println(".");
-                            writer.print(":- ");
-                        }
+                    if(j+1 != listaDeProposiciones.get(i).size()) {
+                        writer.print(listaDeProposiciones.get(i).get(j) + ", ");
+                    } else {
+                        writer.println(listaDeProposiciones.get(i).get(j) + ".");
                     }
-                }
-                if (i+1 != listaDeProposiciones.size())
-                    writer.print(", ");
-            }
-            writer.println(".");
-    }
 
+                }
+                if(i+1 != listaDeProposiciones.size()) {
+                    writer.print(":- ");
+                }
+            }
+    }
+    public static void recorrerArbol(ArbolBin arbolEntrada) {
+        if (arbolEntrada != null) {
+            System.out.println("Raiz: " + arbolEntrada.getRaiz());
+
+            if (arbolEntrada.getIzq() != null) {
+                System.out.println("La izq de " + arbolEntrada.getRaiz() + " es: " + arbolEntrada.getIzq().getRaiz());
+                recorrerArbol(arbolEntrada.getIzq());
+            }
+
+            if (arbolEntrada.getDer() != null) {
+                System.out.println("La der de " + arbolEntrada.getRaiz() + " es: " + arbolEntrada.getDer().getRaiz());
+                recorrerArbol(arbolEntrada.getDer());
+            }
+
+        }
+    }
     public static void main(String[] args) {
         ArrayList<String> lineasFichero = lecturaLineasArchivo(args);
         HashSet<String> proposiciones = new HashSet<String>();
@@ -315,7 +310,8 @@ public class Main {
             PrintWriter writer = new PrintWriter(args[0].split("\\.")[0]+"2.lp", "UTF-8");
             for (int i = 0; i<lineasFichero.size(); i++) {
                 writer.println("% "+ lineasFichero.get(i));
-                partesLineasFichero = ("- " + lineasFichero.get(i)).split(" ");
+                partesLineasFichero = (lineasFichero.get(i)).split(" ");
+                System.out.println(partesLineasFichero[1]);
                 for (int j = 0; j<partesLineasFichero.length; j++) {
                     if (!partesLineasFichero[j].equals(">") && !partesLineasFichero[j].equals("&") && !partesLineasFichero[j].equals("-")
                     && !partesLineasFichero[j].equals("=") && !partesLineasFichero[j].equals("%") && !partesLineasFichero[j].equals("|")
@@ -325,8 +321,15 @@ public class Main {
                     }
                 }
                 arbol = crearArbol(partesLineasFichero, pointer);
+
+
+
                 transformarNNF(arbol);
+
+                recorrerArbol(arbol);
+
                 listaDeProposiciones = transformarFNC(arbol);
+                System.out.println(listaDeProposiciones);
                 crearArchivoClingo(listaDeProposiciones, writer);
                 pointer.setValor(-1);
             }
@@ -334,7 +337,7 @@ public class Main {
             String [] itr = proposiciones.toArray(String[]::new);
             for(int x = 0; x<itr.length;x++) {
                 if (x+1 != itr.length)
-                    writer.print(itr[x] + ",");
+                    writer.print(itr[x] + ";");
                 else
                     writer.print(itr[x]);
             }
