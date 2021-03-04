@@ -317,7 +317,6 @@ public class Main {
                 writer.println("% "+ lineasFichero.get(i));
                 partesLineasFichero = ("- " + lineasFichero.get(i)).split(" ");
                 for (int j = 0; j<partesLineasFichero.length; j++) {
-                    System.out.println(partesLineasFichero[j].equals(">") + " es " + partesLineasFichero[j]);
                     if (!partesLineasFichero[j].equals(">") && !partesLineasFichero[j].equals("&") && !partesLineasFichero[j].equals("-")
                     && !partesLineasFichero[j].equals("=") && !partesLineasFichero[j].equals("%") && !partesLineasFichero[j].equals("|")
                     && !partesLineasFichero[j].equals("."))
@@ -328,9 +327,6 @@ public class Main {
                 arbol = crearArbol(partesLineasFichero, pointer);
                 transformarNNF(arbol);
                 listaDeProposiciones = transformarFNC(arbol);
-                //System.out.println(arbol.getRaiz());
-                System.out.println(listaDeProposiciones);
-                System.out.println(listaDeProposiciones.get(0));
                 crearArchivoClingo(listaDeProposiciones, writer);
                 pointer.setValor(-1);
             }
@@ -342,7 +338,7 @@ public class Main {
                 else
                     writer.print(itr[x]);
             }
-            writer.println("}");
+            writer.println("}.");
             writer.close();
         } catch (Exception e) {
             e.printStackTrace();
