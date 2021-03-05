@@ -84,6 +84,13 @@ public class Main {
             if(izq.esHoja() ){
                 if (izq.getRaiz().equals("-")) {
                     izqList.get(0).add(izq.getIzq().getRaiz());
+                } else if(izq.getRaiz().equals("#false")) {
+                    //SI NO AND XA SABEMOS QUE HAI UNHA PROPOSICIÓN FALSA
+                    //O AND VAI DAR CERO
+                    //EN VEZ DE DEVOLVER O AND CAMBIAMOS A RAIZ POR CERO E XA ESTÁ¿?
+                    r="#false";
+                    //queda eliminar hijos izquierdos e dereitos.
+
                 } else {
                     izqList.get(0).add("not " + izq.getRaiz());
                 }
@@ -142,11 +149,11 @@ public class Main {
                 }
             }
             int posListaSalida = 0;
-            for(int j = 0; j <izqList.size(); j++) {
-                for(int i= 0; i < derList.size(); i++){
+            for(int i = 0; i <izqList.size(); i++) {
+                for(int j= 0; j < derList.size(); j++){
                     listaSalida.add(new ArrayList<>());
-                    listaSalida.get(posListaSalida).addAll(derList.get(i));
-                    listaSalida.get(posListaSalida).addAll(izqList.get(j));
+                    listaSalida.get(posListaSalida).addAll(derList.get(j));
+                    listaSalida.get(posListaSalida).addAll(izqList.get(i));
                     posListaSalida = posListaSalida+1;
                 }
             }
@@ -156,7 +163,13 @@ public class Main {
 
             if (arbolEntrada.esHoja()) {
                 if (arbolEntrada.getRaiz().equals("-")) {
-                    rList.get(0).add(arbolEntrada.getRaiz() + arbolEntrada.getIzq().getRaiz());
+                    if (arbolEntrada.getIzq().getRaiz().equals("#false")){
+                        rList.get(0).add("#true");
+                    } else if(arbolEntrada.getIzq().getRaiz().equals("#true")){
+                        rList.get(0).add("#false");
+                    } else {
+                        rList.get(0).add(arbolEntrada.getRaiz() + arbolEntrada.getIzq().getRaiz());
+                    }
                 } else {
                     rList.get(0).add(arbolEntrada.getRaiz());
                 }
@@ -219,6 +232,11 @@ public class Main {
             izq = crearArbol(lineasFichero, pointer);
             return arbolSalida = new ArbolBin(r,izq,null);
         } else {
+            if (r.equals("0")){
+                return arbolSalida = new ArbolBin("#false",null, null);
+            } else if (r.equals("1")) {
+                return arbolSalida = new ArbolBin("#true",null, null);
+            }
             return arbolSalida = new ArbolBin(r,null, null);
         }
     }
@@ -307,7 +325,7 @@ public class Main {
         ArrayList<ArrayList<String>> listaDeProposiciones = new ArrayList<>();
         ArbolBin arbol;
         try {
-            PrintWriter writer = new PrintWriter(args[0].split("\\.")[0]+"2.lp", "UTF-8");
+            PrintWriter writer = new PrintWriter(args[0].split("\\.")[0]+"1.lp", "UTF-8");
             for (int i = 0; i<lineasFichero.size(); i++) {
                 writer.println("% "+ lineasFichero.get(i));
                 partesLineasFichero = (lineasFichero.get(i)).split(" ");
@@ -315,7 +333,7 @@ public class Main {
                 for (int j = 0; j<partesLineasFichero.length; j++) {
                     if (!partesLineasFichero[j].equals(">") && !partesLineasFichero[j].equals("&") && !partesLineasFichero[j].equals("-")
                     && !partesLineasFichero[j].equals("=") && !partesLineasFichero[j].equals("%") && !partesLineasFichero[j].equals("|")
-                    && !partesLineasFichero[j].equals("."))
+                    && !partesLineasFichero[j].equals(".") && !partesLineasFichero[j].equals("0")&& !partesLineasFichero[j].equals("1"))
                     {
                         proposiciones.add(partesLineasFichero[j]);
                     }
