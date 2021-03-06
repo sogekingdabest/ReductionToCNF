@@ -1,6 +1,11 @@
 package com.company;
 
-import java.util.ArrayList;
+/*** AUTORES ***/
+/** Angel Alvarez Rey Login UDC: angel.alvarez.rey **/
+/** Daniel Olañeta Fariña Login UDC: daniel.olaneta.farina **/
+/** GitHub: https://github.com/Lorudarkuh (Angel Alvarez Rey)**/
+/** GitHub: https://github.com/sogekingdabest (Daniel Olañeta Fariña)**/
+/*** ***/
 
 public class ArbolBin {
     private String raiz;

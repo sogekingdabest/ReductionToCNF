@@ -1,8 +1,18 @@
 package com.company;
 
-import java.io.*;
-import java.lang.reflect.Array;
-import java.util.*;
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileReader;
+import java.io.PrintWriter;
+import java.util.ArrayList;
+import java.util.HashSet;
+
+/*** AUTORES ***/
+/** Angel Alvarez Rey Login UDC: angel.alvarez.rey **/
+/** Daniel Olañeta Fariña Login UDC: daniel.olaneta.farina **/
+/** GitHub: https://github.com/Lorudarkuh (Angel Alvarez Rey)**/
+/** GitHub: https://github.com/sogekingdabest (Daniel Olañeta Fariña)**/
+/*** ***/
 
 public class Main {
 
@@ -163,9 +173,9 @@ public class Main {
 
             if (arbolEntrada.esHoja()) {
                 if (arbolEntrada.getRaiz().equals("-")) {
-                    rList.get(0).add(arbolEntrada.getRaiz() + arbolEntrada.getIzq().getRaiz());
+                    rList.get(0).add(arbolEntrada.getIzq().getRaiz());
                 } else {
-                    rList.get(0).add(arbolEntrada.getRaiz());
+                    rList.get(0).add("not " + arbolEntrada.getRaiz());
                 }
             }
             listaSalida.add(rList.get(0));

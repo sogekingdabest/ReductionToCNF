@@ -1,5 +1,12 @@
 package com.company;
 
+/*** AUTORES ***/
+/** Angel Alvarez Rey Login UDC: angel.alvarez.rey **/
+/** Daniel Olañeta Fariña Login UDC: daniel.olaneta.farina **/
+/** GitHub: https://github.com/Lorudarkuh (Angel Alvarez Rey)**/
+/** GitHub: https://github.com/sogekingdabest (Daniel Olañeta Fariña)**/
+/*** ***/
+
 public class Pointer {
     private int valor;
 
