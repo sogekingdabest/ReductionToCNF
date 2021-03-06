@@ -50,6 +50,13 @@ public class Main {
                 }
                 return arbolEntrada;
             }
+            System.out.println(izq.getRaiz());
+            if (izq.getRaiz().equals("0")) {
+                izq.setRaiz("#false");
+            }
+            if (izq.getRaiz().equals("1")) {
+                izq.setRaiz("#true");
+            }
 
         } else {
             if (izq != null){
@@ -315,7 +322,7 @@ public class Main {
                 for (int j = 0; j<partesLineasFichero.length; j++) {
                     if (!partesLineasFichero[j].equals(">") && !partesLineasFichero[j].equals("&") && !partesLineasFichero[j].equals("-")
                     && !partesLineasFichero[j].equals("=") && !partesLineasFichero[j].equals("%") && !partesLineasFichero[j].equals("|")
-                    && !partesLineasFichero[j].equals("."))
+                    && !partesLineasFichero[j].equals(".") && !partesLineasFichero[j].equals("0") && !partesLineasFichero[j].equals("1"))
                     {
                         proposiciones.add(partesLineasFichero[j]);
                     }
