@@ -60,7 +60,6 @@ public class Main {
                 }
                 return arbolEntrada;
             }
-            System.out.println(izq.getRaiz());
             if (izq.getRaiz().equals("0")) {
                 izq.setRaiz("#false");
             }
@@ -82,19 +81,19 @@ public class Main {
     private static ArrayList<ArrayList<String>> transformarFNC(ArbolBin arbolEntrada) {
         String r = arbolEntrada.getRaiz();
         ArrayList<ArrayList<String>> rList = new ArrayList<>();
-        rList.add(new ArrayList<String>());
+        rList.add(new ArrayList<>());
 
         ArrayList<ArrayList<String>> izqList = new ArrayList<>();
-        izqList.add(new ArrayList<String>());
+        izqList.add(new ArrayList<>());
 
         ArrayList<ArrayList<String>> derList = new ArrayList<>();
-        derList.add(new ArrayList<String>());
+        derList.add(new ArrayList<>());
 
-        ArrayList<String> aux;
 
         ArbolBin izq = arbolEntrada.getIzq();
         ArbolBin der = arbolEntrada.getDer();
         ArrayList<ArrayList<String>> listaSalida = new ArrayList<>();
+        int posListaSalida = 0;
 
         if (r.equals("&")){
 
@@ -129,7 +128,6 @@ public class Main {
                     listaSalida.add(derList.get(i));
                 }
             }
-            System.out.println("Aqui & " + listaSalida);
             return listaSalida;
 
         } else if (r.equals("|")){
@@ -158,7 +156,7 @@ public class Main {
                     derList = transformarFNC(der);
                 }
             }
-            int posListaSalida = 0;
+
             for(int j = 0; j <izqList.size(); j++) {
                 for(int i= 0; i < derList.size(); i++){
                     listaSalida.add(new ArrayList<>());
@@ -186,23 +184,22 @@ public class Main {
 
     private static ArbolBin crearArbol(String[] lineasFichero, Pointer pointer){
         String r = lineasFichero[pointer.next()];
-        ArbolBin izq = null;
-        ArbolBin der = null;
-        ArbolBin arbolSalida;
+        ArbolBin izq;
+        ArbolBin der;
 
         if (r.equals("&") || r.equals("|") || r.equals(">") || r.equals("=") || r.equals("%") ){
             izq = crearArbol(lineasFichero, pointer);
             der = crearArbol(lineasFichero, pointer);
             if (r.equals(">")) {
                 r= "|";
-                return arbolSalida = new ArbolBin(
+                return new ArbolBin(
                         r,
                         new ArbolBin("-", izq, null),
                         der
                 );
             } else if (r.equals("=")) {
                 r = "&";
-                return arbolSalida = new ArbolBin(
+                return new ArbolBin(
                             r,
                             new ArbolBin(
                                     "|",
@@ -217,7 +214,7 @@ public class Main {
                         );
             } else if (r.equals("%")){
                 r = "|";
-                return arbolSalida = new ArbolBin(
+                return new ArbolBin(
                         r,
                         new ArbolBin(
                                 "&",
@@ -231,23 +228,22 @@ public class Main {
                         )
                 );
             }
-            return arbolSalida = new ArbolBin(r,izq,der);
+            return new ArbolBin(r,izq,der);
         } else if(r.equals("-")){
             izq = crearArbol(lineasFichero, pointer);
-            return arbolSalida = new ArbolBin(r,izq,null);
+            return new ArbolBin(r,izq,null);
         } else {
-            return arbolSalida = new ArbolBin(r,null, null);
+            return new ArbolBin(r,null, null);
         }
     }
 
     private static ArrayList<String> lecturaLineasArchivo(String [] args) {
-        File archivo = null;
+        File archivo;
         FileReader fr = null;
-        BufferedReader br = null;
+        BufferedReader br;
         String rutaArchivo = "";
         ArrayList<String> lineasArchivo = new ArrayList<String>();
 
-        System.out.println(args[0]);
         if (args.length == 0)
             System.exit(0);
         if (args.length == 1) {
@@ -262,7 +258,6 @@ public class Main {
                 // Lectura del fichero
                 String linea;
                 while ((linea = br.readLine()) != null){
-                    //System.out.println("Linea: " + linea);
                     lineasArchivo.add(linea);
                 }
 
@@ -300,9 +295,11 @@ public class Main {
                 }
             }
     }
+
+    //Función auxiliar empregada para comprobar os árboles que o programa iba creando.
+    /*
     public static void recorrerArbol(ArbolBin arbolEntrada) {
         if (arbolEntrada != null) {
-            System.out.println("Raiz: " + arbolEntrada.getRaiz());
 
             if (arbolEntrada.getIzq() != null) {
                 System.out.println("La izq de " + arbolEntrada.getRaiz() + " es: " + arbolEntrada.getIzq().getRaiz());
@@ -316,19 +313,19 @@ public class Main {
 
         }
     }
+    */
     public static void main(String[] args) {
         ArrayList<String> lineasFichero = lecturaLineasArchivo(args);
-        HashSet<String> proposiciones = new HashSet<String>();
+        HashSet<String> proposiciones = new HashSet<>();
         String [] partesLineasFichero;
         Pointer pointer = new Pointer(-1);
-        ArrayList<ArrayList<String>> listaDeProposiciones = new ArrayList<>();
+        ArrayList<ArrayList<String>> listaDeProposiciones;
         ArbolBin arbol;
         try {
-            PrintWriter writer = new PrintWriter(args[0].split("\\.")[0]+"2.lp", "UTF-8");
+            PrintWriter writer = new PrintWriter(args[0].split("\\.")[0]+"1.lp", "UTF-8");
             for (int i = 0; i<lineasFichero.size(); i++) {
                 writer.println("% "+ lineasFichero.get(i));
                 partesLineasFichero = (lineasFichero.get(i)).split(" ");
-                System.out.println(partesLineasFichero[1]);
                 for (int j = 0; j<partesLineasFichero.length; j++) {
                     if (!partesLineasFichero[j].equals(">") && !partesLineasFichero[j].equals("&") && !partesLineasFichero[j].equals("-")
                     && !partesLineasFichero[j].equals("=") && !partesLineasFichero[j].equals("%") && !partesLineasFichero[j].equals("|")
@@ -343,10 +340,9 @@ public class Main {
 
                 transformarNNF(arbol);
 
-                recorrerArbol(arbol);
+                //recorrerArbol(arbol);
 
                 listaDeProposiciones = transformarFNC(arbol);
-                System.out.println(listaDeProposiciones);
                 crearArchivoClingo(listaDeProposiciones, writer);
                 pointer.setValor(-1);
             }
